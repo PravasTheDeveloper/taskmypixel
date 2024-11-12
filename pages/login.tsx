@@ -11,10 +11,15 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Head from "next/head"
 
 export default function Login() {
     return (
         <>
+            <Head>
+                <title>Login || TaskMyPixel</title>
+            </Head>
+            
             <div className="w-full h-screen relative">
                 <div className="absolute z-50 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <Card className="w-[350px]">
