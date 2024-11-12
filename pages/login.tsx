@@ -12,14 +12,21 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Head from "next/head"
+import ClipLoader from "react-spinners/ClipLoader";
+import { Eye, EyeClosed, EyeOff } from "lucide-react"
+
 
 export default function Login() {
+
+    const [loader, setloader] = React.useState(false)
+    const [showpassword, setshowpassword] = React.useState(false)
+
     return (
         <>
             <Head>
                 <title>Login || TaskMyPixel</title>
             </Head>
-            
+
             <div className="w-full h-screen relative">
                 <div className="absolute z-50 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <Card className="w-[350px]">
@@ -36,13 +43,22 @@ export default function Login() {
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor="password">Password</Label>
-                                        <Input id="password" type="password" placeholder="Enter your password" />
+                                        <div className="w-full h-auto relative flex justify-center items-center">
+                                            <Input id="password" type={showpassword === false ? "password" : "text"} placeholder="Enter your password" />
+                                            {
+                                                showpassword === true ? <EyeOff onClick={() => { setshowpassword(!showpassword) }} className="w-auto absolute right-2 cursor-pointer" size={20} /> : <Eye onClick={() => { setshowpassword(!showpassword) }} className="w-auto absolute right-2 cursor-pointer" size={20} />
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </CardContent>
                         <CardFooter className="flex justify-between">
-                            <Button className="w-full">Log In</Button>
+                            <Button className="w-full" onClick={() => { setloader(true) }}>
+                                {
+                                    loader === true ? <ClipLoader size={16} color="#fff" /> : "Log In "
+                                }
+                            </Button>
                         </CardFooter>
                     </Card>
                 </div>
